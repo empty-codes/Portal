@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CourseListTable">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="CourseCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseTitle" Type="nvarchar(max)" />
+          <Property Name="CourseLevel" Type="int" />
+          <Property Name="Lecturer" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LecturerTable">
+          <Key>
+            <PropertyRef Name="LecturerId" />
+          </Key>
+          <Property Name="LecturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentCourseListTable">
+          <Key>
+            <PropertyRef Name="MatricNo" />
+          </Key>
+          <Property Name="MatricNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Programme" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudyLevel" Type="int" />
+          <Property Name="CourseId_1" Type="nvarchar(max)" />
+          <Property Name="CourseId_2" Type="nvarchar(max)" />
+          <Property Name="CourseId_3" Type="nvarchar(max)" />
+          <Property Name="CourseId_4" Type="nvarchar(max)" />
+          <Property Name="CourseId_5" Type="nvarchar(max)" />
+          <Property Name="CourseId_6" Type="nvarchar(max)" />
+          <Property Name="CourseId_7" Type="nvarchar(max)" />
+          <Property Name="CourseId_8" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StudentTable">
+          <Key>
+            <PropertyRef Name="RegNo" />
+          </Key>
+          <Property Name="RegNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="Programme" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudyLevel" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sex" Type="nchar" MaxLength="10" />
+          <Property Name="MaritalStatus" Type="nchar" MaxLength="10" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatricNo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="CourseListTable" EntityType="Self.CourseListTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LecturerTable" EntityType="Self.LecturerTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourseListTable" EntityType="Self.StudentCourseListTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CourseListTable">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseLevel" Type="Int32" />
+          <Property Name="Lecturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LecturerTable">
+          <Key>
+            <PropertyRef Name="LecturerId" />
+          </Key>
+          <Property Name="LecturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentCourseListTable">
+          <Key>
+            <PropertyRef Name="MatricNo" />
+          </Key>
+          <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudyLevel" Type="Int32" />
+          <Property Name="CourseId_1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId_8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentTable">
+          <Key>
+            <PropertyRef Name="RegNo" />
+          </Key>
+          <Property Name="RegNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudyLevel" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PortalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CourseListTables" EntityType="Self.CourseListTable" />
+          <EntitySet Name="LecturerTables" EntityType="Self.LecturerTable" />
+          <EntitySet Name="StudentCourseListTables" EntityType="Self.StudentCourseListTable" />
+          <EntitySet Name="StudentTables" EntityType="Self.StudentTable" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="PortalDBEntities">
+          <EntitySetMapping Name="CourseListTables">
+            <EntityTypeMapping TypeName="Models.CourseListTable">
+              <MappingFragment StoreEntitySet="CourseListTable">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
+                <ScalarProperty Name="CourseLevel" ColumnName="CourseLevel" />
+                <ScalarProperty Name="Lecturer" ColumnName="Lecturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LecturerTables">
+            <EntityTypeMapping TypeName="Models.LecturerTable">
+              <MappingFragment StoreEntitySet="LecturerTable">
+                <ScalarProperty Name="LecturerId" ColumnName="LecturerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourseListTables">
+            <EntityTypeMapping TypeName="Models.StudentCourseListTable">
+              <MappingFragment StoreEntitySet="StudentCourseListTable">
+                <ScalarProperty Name="MatricNo" ColumnName="MatricNo" />
+                <ScalarProperty Name="Programme" ColumnName="Programme" />
+                <ScalarProperty Name="StudyLevel" ColumnName="StudyLevel" />
+                <ScalarProperty Name="CourseId_1" ColumnName="CourseId_1" />
+                <ScalarProperty Name="CourseId_2" ColumnName="CourseId_2" />
+                <ScalarProperty Name="CourseId_3" ColumnName="CourseId_3" />
+                <ScalarProperty Name="CourseId_4" ColumnName="CourseId_4" />
+                <ScalarProperty Name="CourseId_5" ColumnName="CourseId_5" />
+                <ScalarProperty Name="CourseId_6" ColumnName="CourseId_6" />
+                <ScalarProperty Name="CourseId_7" ColumnName="CourseId_7" />
+                <ScalarProperty Name="CourseId_8" ColumnName="CourseId_8" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentTables">
+            <EntityTypeMapping TypeName="Models.StudentTable">
+              <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Programme" ColumnName="Programme" />
+                <ScalarProperty Name="StudyLevel" ColumnName="StudyLevel" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="MatricNo" ColumnName="MatricNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
