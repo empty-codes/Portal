@@ -1,0 +1,14 @@
+﻿#nav-link, footer {
+    color: white;
+}
+
+
+#uni {
+    color: #F64C72;
+    font-size: 2rem;
+}
+
+body, .navbar {
+    background-color: #2F2FA2;
+    font-family: 'Quicksand', sans-serif;
+}
