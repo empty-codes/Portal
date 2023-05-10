@@ -4,5 +4,70 @@
     Layout = "~/Views/Home/HomeLayout.cshtml";
 }
 
-<h2>Home Index</h2>
+<style type="text/css" rel="stylesheet">
+    #home {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        padding-left: 150px;
+        /*padding-right: 50px;*/
+    }
+
+    .portal-intro {
+        font-size: 20px;
+        color: white;
+        padding-bottom: 40px;
+    }
+
+   .card {
+       width: 70%;
+   }
+
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .portal-links {
+        margin-right: 20px;
+    }
+
+
+</style>
+
+<section id="home">
+
+    <div class="portal-intro">
+        <h3>WELCOME TO ESTHER UNIVERSITY</h3>
+        <p>
+            This site was designed to make it easy for our lecturers and students to access information.<br />Students can fill in their personal details, register for classes and view/print their results.
+        </p>
+    </div>
+
+    <div class="portal-links">
+        <a href="~/Student/Index"><button class="portal-button">Student Portal</button></a>
+        <a href="~/Lecturer/Index"><button class="portal-button">Lecturer Portal</button></a>
+    </div>
+    @*<div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+</section>
 

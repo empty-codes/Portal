@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -106,6 +114,16 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\stdLectStyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Models\PortalEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PortalEntityModel.Context.cs</LastGenOutput>
+      <DependentUpon>PortalEntityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\PortalEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PortalEntityModel.edmx</DependentUpon>
+      <LastGenOutput>PortalEntityModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -121,6 +139,33 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourseListTable.cs">
+      <DependentUpon>PortalEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LecturerTable.cs">
+      <DependentUpon>PortalEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PortalEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PortalEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PortalEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentCourseListTable.cs">
+      <DependentUpon>PortalEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentTable.cs">
+      <DependentUpon>PortalEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -142,6 +187,13 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\PortalEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PortalEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PortalEntityModel.edmx.diagram">
+      <DependentUpon>PortalEntityModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
@@ -167,7 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

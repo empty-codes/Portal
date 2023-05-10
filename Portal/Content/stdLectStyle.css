@@ -12,3 +12,13 @@ body, .navbar {
     background-color: #2F2FA2;
     font-family: 'Quicksand', sans-serif;
 }
+
+body {
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+}
