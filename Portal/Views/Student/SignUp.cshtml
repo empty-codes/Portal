@@ -1,8 +1,157 @@
-﻿
+﻿@model Portal.Models.StudentTable
+
 @{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Student/StudentLayout.cshtml";
+    int[] level = { 100, 200, 300, 400, 500 };
+    string[] programme = { "Computer Science", "Software Engineering" };
+    string[] department = { "Computing and Engineering Sciences" };
 }
 
-<h2>SignUp</h2>
+<style>
+    .form-fields {
+        padding: 10px;
+    }
 
+    .form-input {
+        width: 90%;
+    }
+
+    #student-form {
+        width: 50%;
+    }
+
+    .card {
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    #student {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .signup-labels {
+        font-weight: 700;
+    }
+
+
+    .form-form {
+        display: flex;
+        justify-content: center;
+    }
+
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+    }
+
+    .portal-button-container {
+        text-align: center;
+    }
+</style>
+
+<div id="student">
+    <div id="student-form">
+        <div class="card-body">
+            <div class="card" id="form">
+                <!--Registration Form-->
+                <h3>Registration Form</h3>
+                <div class="form-form">
+                    @using (Html.BeginForm("SignUp", "Student", FormMethod.Post))
+                    {
+                        <div class="form-fields">
+                            <label class="signup-labels">First Name: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "Enter your firstname" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Last Name: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Enter your lastname" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Email: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Enter your email" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Sex: </label>
+                            Male
+                            <label>@Html.RadioButtonFor(x => x.Sex, "M")</label>
+                            Female
+                            <label>@Html.RadioButtonFor(x => x.Sex, "F")</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Marital Status:   </label>
+                            Single
+                            <label>@Html.RadioButtonFor(x => x.MaritalStatus, "S") </label>
+                            Married
+                            <label>@Html.RadioButtonFor(x => x.MaritalStatus, "M") </label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Nationality: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.Nationality, new { @class = "form-control", placeholder = "Enter your nationality" })</label>
+                        </div>
+
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Phone number: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "+234xxxxxxxxxx" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Date of Birth: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = "Enter your DOB in the format DD/MM/YYYY" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Age: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.Age, new { @class = "form-control", placeholder = "Enter your current age" })</label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Study Level: </label>
+                            <label class="form-input">@Html.DropDownListFor(x => x.StudyLevel, new SelectList(level), "Select level", new { @class = "form-control" }) </label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Department: </label>
+                            <label class="form-input">@Html.DropDownListFor(x => x.Department, new SelectList(department), "Select Department", new { @class = "form-control" }) </label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Programme: </label>
+                            <label class="form-input">@Html.DropDownListFor(x => x.Programme, new SelectList(programme), "Select programme", new { @class = "form-control" }) </label>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Login Password: </label>
+                            <label class="form-input" aria-labelledby="passwordHelpBlock">@Html.TextBoxFor(x => x.Password, new { @class = "form-control" })</label>
+                            <div id="passwordHelpBlock" class="form-text">
+                                Your password must be at least 8 characters long, contain letters, numbers and special characters.
+                            </div>
+                        </div>
+                        <div class="portal-button-container">
+                            <button type="submit" class="portal-button">Submit</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
