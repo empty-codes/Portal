@@ -7,9 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Portal
+namespace Portal.Models
 {
-    using Portal.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;

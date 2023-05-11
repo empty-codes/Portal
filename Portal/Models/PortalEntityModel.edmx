@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CourseListTable">
           <Key>
             <PropertyRef Name="CourseId" />
@@ -60,6 +60,8 @@
           <Property Name="MaritalStatus" Type="nchar" MaxLength="10" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
           <Property Name="MatricNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="CourseListTable" EntityType="Self.CourseListTable" Schema="dbo" store:Type="Tables" />
@@ -67,8 +69,7 @@
           <EntitySet Name="StudentCourseListTable" EntityType="Self.StudentCourseListTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -127,6 +128,8 @@
           <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="PortalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CourseListTables" EntityType="Self.CourseListTable" />
@@ -184,6 +187,8 @@
           <EntitySetMapping Name="StudentTables">
             <EntityTypeMapping TypeName="Models.StudentTable">
               <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="RegNo" ColumnName="RegNo" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
