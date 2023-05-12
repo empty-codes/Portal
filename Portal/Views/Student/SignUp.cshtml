@@ -60,6 +60,10 @@
     .portal-button-container {
         text-align: center;
     }
+
+    #error {
+        color: red;
+    }
 </style>
 
 <div id="student">
@@ -68,22 +72,26 @@
             <div class="card" id="form">
                 <!--Registration Form-->
                 <h3>Registration Form</h3>
+                <small id="error">@ViewBag.Error</small>
                 <div class="form-form">
                     @using (Html.BeginForm("SignUp", "Student", FormMethod.Post))
                     {
                         <div class="form-fields">
                             <label class="signup-labels">First Name: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "Enter your firstname" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.FirstName)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Last Name: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Enter your lastname" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.LastName)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Email: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Enter your email" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Email)</small>
                         </div>
 
                         <div class="form-fields">
@@ -92,6 +100,7 @@
                             <label>@Html.RadioButtonFor(x => x.Sex, "M")</label>
                             Female
                             <label>@Html.RadioButtonFor(x => x.Sex, "F")</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Sex)</small>
                         </div>
 
                         <div class="form-fields">
@@ -100,51 +109,72 @@
                             <label>@Html.RadioButtonFor(x => x.MaritalStatus, "S") </label>
                             Married
                             <label>@Html.RadioButtonFor(x => x.MaritalStatus, "M") </label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.MaritalStatus)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Nationality: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.Nationality, new { @class = "form-control", placeholder = "Enter your nationality" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Nationality)</small>
                         </div>
 
 
                         <div class="form-fields">
                             <label class="signup-labels">Phone number: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "+234xxxxxxxxxx" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Phone)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Date of Birth: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = "Enter your DOB in the format DD/MM/YYYY" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.DateOfBirth)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Age: </label>
                             <label class="form-input">@Html.TextBoxFor(x => x.Age, new { @class = "form-control", placeholder = "Enter your current age" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Age)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Study Level: </label>
                             <label class="form-input">@Html.DropDownListFor(x => x.StudyLevel, new SelectList(level), "Select level", new { @class = "form-control" }) </label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.StudyLevel)</small>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Matric Number: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.MatricNo, new { @class = "form-control", placeholder = "Enter your matric number in the format xx/xxxx" })</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.MatricNo)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Department: </label>
                             <label class="form-input">@Html.DropDownListFor(x => x.Department, new SelectList(department), "Select Department", new { @class = "form-control" }) </label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Department)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Programme: </label>
                             <label class="form-input">@Html.DropDownListFor(x => x.Programme, new SelectList(programme), "Select programme", new { @class = "form-control" }) </label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Programme)</small>
                         </div>
 
                         <div class="form-fields">
                             <label class="signup-labels">Login Password: </label>
-                            <label class="form-input" aria-labelledby="passwordHelpBlock">@Html.TextBoxFor(x => x.Password, new { @class = "form-control" })</label>
+                            <label class="form-input" aria-labelledby="passwordHelpBlock">@Html.PasswordFor(x => x.Password, new { @class = "form-control" })</label>
                             <div id="passwordHelpBlock" class="form-text">
                                 Your password must be at least 8 characters long, contain letters, numbers and special characters.
                             </div>
+                            <small id="error">@Html.ValidationMessageFor(x => x.Password)</small>
                         </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Confirm Password: </label>
+                            <label class="form-input">@Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control"})</label>
+                        </div>
+
                         <div class="portal-button-container">
                             <button type="submit" class="portal-button">Submit</button>
                         </div>
