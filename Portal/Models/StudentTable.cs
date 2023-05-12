@@ -16,36 +16,40 @@ namespace Portal.Models
     public partial class StudentTable
     {
         public int RegNo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter Firstname")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter Lastname")]
         public string LastName { get; set; }
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter Department")]
         public string Department { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter Programme")]
         public string Programme { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Choose Study Level")]
         public Nullable<int> StudyLevel { get; set; }
         [Required]
-        [Phone]
+        [Phone(ErrorMessage = "Enter valid phone number")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Enter valid password")]
+        [RegularExpression("^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", ErrorMessage = "Enter valid password")]
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Choose Sex")]
+        public string Sex { get; set; }
+        [Required(ErrorMessage = "Choose Marital Status")]
+        public string MaritalStatus { get; set; }
+        [Required(ErrorMessage = "Enter Nationality")]
+        public string Nationality { get; set; }
+        [Required(ErrorMessage = "Enter Matric number")]
+        public string MatricNo { get; set; }
+        [Required(ErrorMessage = "Enter Age")]
+        public Nullable<int> Age { get; set; }
+        [Required(ErrorMessage = "Enter Date of Birth")]
+        public string DateOfBirth { get; set; }
         [Required]
         [RegularExpression("^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]
-        public string Password { get; set; }
-        [Required]
-        public string Sex { get; set; }
-        [Required]
-        public string MaritalStatus { get; set; }
-        [Required]
-        public string Nationality { get; set; }
-        [Required]
-        public string MatricNo { get; set; }
-        [Required]
-        public Nullable<int> Age { get; set; }
-        [Required]
-        public string DateOfBirth { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }
+
