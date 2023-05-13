@@ -78,5 +78,13 @@ namespace Portal.Controllers
         {
             return View();
         }
+
+        public ActionResult Dashboard(StudentTable student)
+        {
+            ViewBag.Student = student;
+            //var studentFirstname = db.StudentTables.Find(student.FirstName);
+            //ViewBag.StudentName = $"{studentFirstname.FirstName}";
+            return View();
+        }
     }
 }
