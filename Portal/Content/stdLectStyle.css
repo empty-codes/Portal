@@ -6,6 +6,7 @@
 #uni {
     color: #F64C72;
     font-size: 2rem;
+    font-weight: 700;
 }
 
 body, .navbar {
@@ -21,4 +22,5 @@ body {
 .navbar-nav {
     display: flex;
     justify-content: flex-end;
+    align-content: flex-end;
 }
