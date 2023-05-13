@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\stdLectStyle.css" />
+    <Content Include="Content\StudentDashboardCss.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\PortalEntityModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -210,6 +211,8 @@
     <Content Include="Views\Lecturer\LecturerLayout.cshtml" />
     <Content Include="Views\Lecturer\Index.cshtml" />
     <Content Include="Views\Lecturer\Login.cshtml" />
+    <Content Include="Views\Student\Dashboard.cshtml" />
+    <Content Include="Views\Student\StudentDashboardLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
