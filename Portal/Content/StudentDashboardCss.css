@@ -1,6 +1,5 @@
 ﻿
 body {
-    background-color: white;
     display: flex;
     flex-direction: column;
 }
@@ -53,5 +52,15 @@ body {
      color: black;
  }
 .dashboard-content {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: #2F2FA2;
+    gap: 10px;
+}
+
+.actual-content {
+/*    background-color: white;*/
+    margin: 10px;
+    border: 2px solid #F64C72;
 }
