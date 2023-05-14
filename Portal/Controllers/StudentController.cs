@@ -117,5 +117,11 @@ namespace Portal.Controllers
             //ViewBag.StudentName = $"{studentFirstname.FirstName}";
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login", "Student");
+        }
     }
 }

@@ -33,20 +33,20 @@ namespace Portal.Controllers
             else
             {
                 //check db for matric no
-                var userCheck = db.LecturerTables.Where(x => x.Email.ToLower() == login.Email.ToLower()).FirstOrDefault();
-                if (userCheck is null)
+                var emailCheck = db.LecturerTables.Where(x => x.Email.ToLower() == login.Email.ToLower()).FirstOrDefault();
+                if (emailCheck is null)
                 {
                     ViewBag.Error = "Email not found.";
                     return View(login);
                 }
-                else if (userCheck.Password != login.Password)
+                else if (emailCheck.Password != login.Password)
                 {
                     ViewBag.Error = "Wrong Password.";
                     return View(login);
                 }
                 else
                 {
-                    return RedirectToAction("Dashboard", userCheck);
+                    return RedirectToAction("Dashboard", emailCheck);
                 }
             }
             return View();
@@ -56,6 +56,12 @@ namespace Portal.Controllers
         {
             ViewBag.Lecturer = lecturer;
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login", "Lecturer");
         }
 
     }
