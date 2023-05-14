@@ -20,7 +20,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid">
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid actual-links">
                     <li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Student/Dashboard">Dashboard</a>
                     </li>
@@ -50,7 +50,7 @@
     </nav>
 
 
-    <div class="content">
+    <div class="course-content">
         @RenderBody()
     </div>
 
@@ -58,6 +58,11 @@
     <footer>
         <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
     </footer>
+
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-2.0.0.min.js"></script>
+    @RenderSection("scripts", required:false)
+
 </body>
+
 </html>

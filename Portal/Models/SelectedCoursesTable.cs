@@ -12,14 +12,13 @@ namespace Portal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseListTable
+    public partial class SelectedCoursesTable
     {
         public string CourseId { get; set; }
         public string CourseTitle { get; set; }
-        public string Lecturer { get; set; }
-        public Nullable<int> LevelTaken { get; set; }
         public Nullable<int> CreditHours { get; set; }
+        public Nullable<int> LevelTaken { get; set; }
+        public string Lecturer { get; set; }
         public string Programme { get; set; }
-        public Nullable<int> SemesterNo { get; set; }
     }
 }

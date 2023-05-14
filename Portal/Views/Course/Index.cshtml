@@ -1,0 +1,116 @@
+﻿@model Portal.Models.CourseListTable
+
+@{
+    ViewBag.Title = "Course List";
+    Layout = "~/Views/Course/CourseLayout.cshtml";
+}
+
+@*@Html.Hidden("RedirectTo", Url = "~/Views/Course/CourseLayout.cshtml")*@
+
+<div class="course-list">
+    <table id="course-table" class="display course-list-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Course ID</th>
+                <th>Course Title</th>
+                <th>Credit Hours</th>
+                <th>Level Taken</th>
+                <th>Lecturer</th>
+                <th>Programme</th>
+            </tr>
+        </thead>
+    </table>
+
+    <button class="portal-button" id="select-btn">Select Courses</button>
+</div>
+
+<link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+
+@section scripts {
+
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+    <script type="text/javascript">var url = '@Url.Action("SelectedCourses", "Course")';</script>
+
+    <script>
+        var coursetable;
+        $(document).ready(function () {
+           coursetable = $("#course-table").DataTable({
+                "ajax": {
+                    "url": "/Course/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {},
+                    { "data": "CourseId" },
+                    { "data": "CourseTitle" },
+                    { "data": "CreditHours" },
+                    { "data": "LevelTaken" },
+                    { "data": "Lecturer" },
+                    { "data": "Programme" }
+                ],
+                'columnDefs': [
+                    {
+                        "defaultContent": "-",
+                        "targets": 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ]
+            })
+        })
+
+        //$('#select-btn').on('click', function () {
+            //var selected_rows = table.column(0).checkboxes.selected();
+
+            //$.each(selected_rows, function (key, model.CourseListTable.CourseId) {
+            //    console.log(x.CourseId);
+            //});
+        //    $("input:checkbox", coursetable.rows().nodes()).each(function () {
+        //        if ($(this).is(":checked")) {
+        //            var row = $(this).closest('tr');
+        //            console.log(coursetable.row($(row)).data());
+        //        }
+        //    })
+        //});
+
+        //$(function () {
+        //    $(document).on("click", "#select-btn", function () {
+        //        var getselectedvalues = $(".course-list-table input:checked").parents("tr").clone().appendTo($(".selected-courses-table tbody").add());
+        //        location.href = url;
+
+        //    });
+        //});
+
+        //$('#select-btn').on('click', function () {
+
+        //    var getselectedvalues = $(".course-list-table input:checked").parents("tr").clone().appendTo($(".selected-courses-table tbody").add());
+        //    location.href = url + getselectedvalues;
+        //});
+
+        $('#select-btn').on('click', function () {
+            var selected_rows = [];
+            $("input:checkbox", coursetable.rows().nodes()).each(function () {
+                if ($(this).is(":checked")) {
+                    var row = $(this).closest('tr');
+                    selected_rows.push(coursetable.row($(row)).data());
+                }
+            });
+            $.ajax({
+                url: '/Course/GetSelectedCourses',
+                type: 'POST',
+                data: JSON.stringify(selected_rows),
+                contentType: 'application/json',
+                success: function () {
+                    alert('Selected rows saved!');
+                }
+            });
+        });
+
+
+    </script>
+}

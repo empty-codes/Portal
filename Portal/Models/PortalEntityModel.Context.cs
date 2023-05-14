@@ -29,5 +29,6 @@ namespace Portal.Models
         public virtual DbSet<LecturerTable> LecturerTables { get; set; }
         public virtual DbSet<StudentCourseListTable> StudentCourseListTables { get; set; }
         public virtual DbSet<StudentTable> StudentTables { get; set; }
+        public virtual DbSet<SelectedCoursesTable> SelectedCoursesTables { get; set; }
     }
 }

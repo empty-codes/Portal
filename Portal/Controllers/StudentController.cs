@@ -118,6 +118,12 @@ namespace Portal.Controllers
             return View();
         }
 
+        public ActionResult Course(StudentTable student)
+        {
+            ViewBag.Student = student;
+            return RedirectToAction("Index", "Course");
+        }
+
         public ActionResult Logout()
         {
             Session.Abandon();
