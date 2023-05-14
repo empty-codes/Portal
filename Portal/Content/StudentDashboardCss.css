@@ -24,43 +24,32 @@ body {
     font-size: 2rem;
 }
 
-.dashboard-sidebar {
-    background-color: #2F2FA2;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    padding-bottom: 220px;
-}
-
-.dashboard-nav-link {
-    color: white;
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 30px;
-    font-size: 20px;
-    padding-left: 42px;
-    margin-right: 10px;
-    border-bottom: 2px solid #F64C72;
-}
-
-.top {
-    border-top: 2px solid #F64C72;
-}
-
  .dashboard-nav-link:hover {
      color: black;
  }
-.dashboard-content {
+
+ .actual-content {
+     padding-right: 20px;
+     display: flex;
+     flex-direction: row;
+ }
+
+ .course-content {
+     display: flex;
+     margin: 20px;
+     padding-right: 40px;
+     width: 90%;
+     height: 70%;
+     justify-content: center;
+ }
+
+.actual-links {
     display: flex;
-    flex-direction: column;
-    width: 60%;
-    background-color: #2F2FA2;
-    gap: 10px;
+    justify-content: space-evenly;
+    justify-items: flex-end;
 }
 
-.actual-content {
-/*    background-color: white;*/
-    margin: 10px;
-    border: 2px solid #F64C72;
+.course-list {
+    display: flex;
+    flex-direction: column;
 }
