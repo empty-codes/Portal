@@ -112,6 +112,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\LecturerDashboardCss.css" />
     <Content Include="Content\stdLectStyle.css" />
     <Content Include="Content\StudentDashboardCss.css" />
     <Content Include="Global.asax" />
