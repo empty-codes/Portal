@@ -73,11 +73,42 @@ namespace Portal.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login(StudentTable login)
+        {
+            if(login.MatricNo is null || login.Password is null)
+            {
+                ViewBag.Error = "Fill all fields";
+                return View(login);
+            }
+            else
+            {
+                //check db for matric no
+                var userCheck = db.StudentTables.Where(x => x.MatricNo == login.MatricNo).FirstOrDefault();
+                if(userCheck is null)
+                {
+                    ViewBag.Error = "Matric Number not found.";
+                    return View(login);
+                }
+                else if (userCheck.Password != login.Password)
+                {
+                    ViewBag.Error = "Wrong Password.";
+                    return View(login);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", userCheck);
+                }
+            }
+            return View();
+        }
+
 
         public ActionResult Dashboard(StudentTable student)
         {

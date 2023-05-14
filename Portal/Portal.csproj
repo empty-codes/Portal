@@ -213,6 +213,8 @@
     <Content Include="Views\Lecturer\Login.cshtml" />
     <Content Include="Views\Student\Dashboard.cshtml" />
     <Content Include="Views\Student\StudentDashboardLayout.cshtml" />
+    <Content Include="Views\Lecturer\Dashboard.cshtml" />
+    <Content Include="Views\Lecturer\LecturerDashboardLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

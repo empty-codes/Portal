@@ -4,5 +4,49 @@
     Layout = "~/Views/Lecturer/LecturerLayout.cshtml";
 }
 
-<h2> Lecturer Index</h2>
 
+<style type="text/css" rel="stylesheet">
+    #home {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        padding-left: 150px;
+        /*padding-right: 50px;*/
+    }
+
+    .portal-intro {
+        font-size: 20px;
+        color: white;
+        padding-bottom: 40px;
+    }
+
+    .card {
+        width: 70%;
+    }
+
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .portal-links {
+        margin-right: 20px;
+    }
+</style>
+
+<section id="home">
+
+    <div class="portal-intro">
+        <h3>STUDENT PORTAL</h3>
+        <p>
+            This site was designed to make it easy for our lecturers and students to access information.<br />Lecturers can view students who registered for their courses and upload student results.
+        </p>
+    </div>
+
+    <div class="portal-links">
+        <a href="~/Lecturer/Login"><button class="portal-button">Login</button></a>
+    </div>
+
+</section>

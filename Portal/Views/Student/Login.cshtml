@@ -1,8 +1,102 @@
-﻿
+﻿@model Portal.Models.StudentTable
+
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Student/StudentLayout.cshtml";
 }
 
-<h2>Login</h2>
+<style>
+    .form-fields {
+        padding: 20px;
+    }
+
+    .form-input {
+        width: 50%;
+    }
+
+    #student-form {
+        width: 30%;
+        padding-top: 60px;
+        padding-bottom: 30px;
+    }
+
+    .card {
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    #student {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .signup-labels {
+        font-weight: 700;
+    }
+
+
+    .form-form {
+        display: flex;
+        justify-content: center;
+    }
+
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+    }
+
+    .portal-button-container {
+        text-align: center;
+    }
+
+    #error {
+        color: red;
+        text-align: center;
+    }
+</style>
+
+
+<div id="student">
+    <div id="student-form">
+        <div class="card-body">
+            <div class="card" id="form">
+                <!--Login Form-->
+                <h3>Student Login</h3>
+                <small id="error">@ViewBag.Error</small>
+                <div class="form-form">
+                    @using (Html.BeginForm("Login", "Student", FormMethod.Post))
+                    { 
+                        <div class="form-fields">
+                            <label class="signup-labels">Matric Number: </label>
+                            <label class="form-input">@Html.TextBoxFor(x => x.MatricNo, new { @class = "form-control"})</label>
+                            <br /><small id="error">@Html.ValidationMessageFor(x => x.MatricNo)</small>
+                        </div>
+
+                        <div class="form-fields">
+                            <label class="signup-labels">Login Password: </label>
+                            <label class="form-input" aria-labelledby="passwordHelpBlock">@Html.PasswordFor(x => x.Password, new { @class = "form-control" })</label>
+                        </div>
+
+                
+                        <div class="portal-button-container">
+                            <button type="submit" class="portal-button">Login</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
