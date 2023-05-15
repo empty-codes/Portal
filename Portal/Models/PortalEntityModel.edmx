@@ -31,14 +31,16 @@
         </EntityType>
         <EntityType Name="SelectedCoursesTable">
           <Key>
-            <PropertyRef Name="CourseId" />
+            <PropertyRef Name="No" />
           </Key>
-          <Property Name="CourseId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CourseId" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseTitle" Type="nvarchar(max)" />
           <Property Name="CreditHours" Type="int" />
           <Property Name="LevelTaken" Type="int" />
           <Property Name="Lecturer" Type="nvarchar(max)" />
           <Property Name="Programme" Type="nvarchar(max)" />
+          <Property Name="MatricNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentCourseListTable">
           <Key>
@@ -156,14 +158,16 @@
         </EntityContainer>
         <EntityType Name="SelectedCoursesTable">
           <Key>
-            <PropertyRef Name="CourseId" />
+            <PropertyRef Name="No" />
           </Key>
-          <Property Name="CourseId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CourseTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreditHours" Type="Int32" />
           <Property Name="LevelTaken" Type="Int32" />
           <Property Name="Lecturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Programme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -238,6 +242,8 @@
           <EntitySetMapping Name="SelectedCoursesTables">
             <EntityTypeMapping TypeName="Models.SelectedCoursesTable">
               <MappingFragment StoreEntitySet="SelectedCoursesTable">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="MatricNo" ColumnName="MatricNo" />
                 <ScalarProperty Name="Programme" ColumnName="Programme" />
                 <ScalarProperty Name="Lecturer" ColumnName="Lecturer" />
                 <ScalarProperty Name="LevelTaken" ColumnName="LevelTaken" />

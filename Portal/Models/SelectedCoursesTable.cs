@@ -20,5 +20,7 @@ namespace Portal.Models
         public Nullable<int> LevelTaken { get; set; }
         public string Lecturer { get; set; }
         public string Programme { get; set; }
+        public string MatricNo { get; set; }
+        public int No { get; set; }
     }
 }
