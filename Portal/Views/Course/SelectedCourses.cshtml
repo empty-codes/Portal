@@ -5,8 +5,12 @@
 }
 
 
+
+
 <div class="course-list">
-    <table id="course-table" class="display selected-courses-table">
+    <h3>Selected Courses</h3>
+
+    <table id="selected-course-table" class="display selected-courses-table">
         <thead>
             <tr>
                 <th>Course ID</th>
@@ -26,10 +30,10 @@
 
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-    @*<script>
-        var coursetable;
+    <script>
+        var selectedcoursetable;
         $(document).ready(function () {
-           coursetable = $("#course-table").DataTable({
+           selectedcoursetable = $("#selected-course-table").DataTable({
                 "ajax": {
                     "url": "/Course/GetSelectedCourses",
                     "type": "GET",
@@ -45,5 +49,5 @@
                 ]
              });
         });
-    </script>*@
+    </script>
 }

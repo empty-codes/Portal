@@ -7,7 +7,24 @@
 
 @*@Html.Hidden("RedirectTo", Url = "~/Views/Course/CourseLayout.cshtml")*@
 
+<style>
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+        width: 20%;
+        align-items: center;
+    }
+</style>
+
 <div class="course-list">
+    <h4>Note: Only Select courses suitable for your study level.</h4>
+
     <table id="course-table" class="display course-list-table">
         <thead>
             <tr>
@@ -64,34 +81,6 @@
             })
         })
 
-        //$('#select-btn').on('click', function () {
-            //var selected_rows = table.column(0).checkboxes.selected();
-
-            //$.each(selected_rows, function (key, model.CourseListTable.CourseId) {
-            //    console.log(x.CourseId);
-            //});
-        //    $("input:checkbox", coursetable.rows().nodes()).each(function () {
-        //        if ($(this).is(":checked")) {
-        //            var row = $(this).closest('tr');
-        //            console.log(coursetable.row($(row)).data());
-        //        }
-        //    })
-        //});
-
-        //$(function () {
-        //    $(document).on("click", "#select-btn", function () {
-        //        var getselectedvalues = $(".course-list-table input:checked").parents("tr").clone().appendTo($(".selected-courses-table tbody").add());
-        //        location.href = url;
-
-        //    });
-        //});
-
-        //$('#select-btn').on('click', function () {
-
-        //    var getselectedvalues = $(".course-list-table input:checked").parents("tr").clone().appendTo($(".selected-courses-table tbody").add());
-        //    location.href = url + getselectedvalues;
-        //});
-
         $('#select-btn').on('click', function () {
             var selected_rows = [];
             $("input:checkbox", coursetable.rows().nodes()).each(function () {
@@ -101,12 +90,13 @@
                 }
             });
             $.ajax({
-                url: '/Course/GetSelectedCourses',
+                url: '/Course/SendSelectedCourses',
                 type: 'POST',
                 data: JSON.stringify(selected_rows),
                 contentType: 'application/json',
                 success: function () {
-                    alert('Selected rows saved!');
+                    alert('Selected courses have been added to your course list!');
+                    location.href = url;
                 }
             });
         });
