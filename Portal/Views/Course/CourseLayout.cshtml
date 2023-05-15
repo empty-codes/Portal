@@ -21,9 +21,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid actual-links">
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Student/Dashboard">Dashboard</a>
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Home/Index">Personal Info</a>
                     </li>
@@ -34,16 +34,23 @@
                         <a class="nav-link" id="nav-link" href="~/Course/Index">Select Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Course/Index">My Course Form</a>
+                        <a class="nav-link" id="nav-link" href="~/Course/SelectedCourses">Course Form</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Home/Index">Results</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-end container-fluid">
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Student/Logout">Logout</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item" >
+                            <span id="nav-link" class="nav-link">Hello @User.Identity.Name</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-link" href="~/Student/Logout">Logout</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>
