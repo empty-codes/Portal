@@ -31,10 +31,10 @@ namespace Portal.Controllers
         [HttpPost]
         public ActionResult SendSelectedCourses(List<SelectedCoursesTable> selectedRows)
         {
-                int userStudyLevel = GetUserStudyLevel();
-          
-                foreach (var row in selectedRows)
-                {
+            int userStudyLevel = GetUserStudyLevel();
+
+            foreach (var row in selectedRows)
+            {
                 if (row.LevelTaken == userStudyLevel)
                 {
                     // Check if the data already exists in the database for the given matricNo
@@ -61,12 +61,12 @@ namespace Portal.Controllers
                         });
                     }
                 }
-                
-                    
-                }
 
-                db.SaveChanges();
-            
+
+            }
+
+            db.SaveChanges();
+
 
             return Json(new { success = true });
         }
@@ -86,7 +86,7 @@ namespace Portal.Controllers
             {
                 return 0;
             }
-            
+
 
         }
 
@@ -101,10 +101,44 @@ namespace Portal.Controllers
         public ActionResult GetSelectedCourses(StudentTable student)
         {
             ViewBag.Student = student;
-            List<SelectedCoursesTable> cList = db.SelectedCoursesTables.ToList<SelectedCoursesTable>();
+            string currentUserName = User.Identity.Name;
+
+            // Retrieve selected courses for the current user
+            List<SelectedCoursesTable> cList = db.SelectedCoursesTables
+                .Where(c => c.MatricNo == currentUserName)
+                .ToList();
+
             return Json(new { data = cList }, JsonRequestBehavior.AllowGet);
         }
-    }
-}
 
- 
+        [Authorize]
+        [HttpPost]
+        public ActionResult DropCourse(List<SelectedCoursesTable> selectedRows)
+        {
+            string MatricNo = User.Identity.Name;
+                foreach (var row in selectedRows)
+                {
+                    var course = db.SelectedCoursesTables.FirstOrDefault(s => s.MatricNo == MatricNo && s.CourseId == row.CourseId);
+
+                    if (course != null)
+                    {
+                        db.SelectedCoursesTables.Remove(course);
+                    }
+                    else
+                    {
+                        // Return appropriate response if the course is not found
+                        return HttpNotFound();
+                    }
+                }
+
+                // Save the changes to the database
+                db.SaveChanges();
+
+                // Return success message or redirect to a desired page
+                return Content("Course dropped successfully.");
+            }
+
+
+        }
+    }
+

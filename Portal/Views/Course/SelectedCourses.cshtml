@@ -4,7 +4,20 @@
     Layout = "~/Views/Course/CourseLayout.cshtml";
 }
 
-
+<style>
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+        width: 30%;
+        align-items: center;
+    }
+</style>
 
 
 <div class="course-list">
@@ -19,21 +32,33 @@
                 <th>Level Taken</th>
                 <th>Lecturer</th>
                 <th>Programme</th>
+                <th>Action</th>
             </tr>
         </thead>
     </table>
+
+    <button class="portal-button" id="drop-btn">Drop Selected Courses</button>
 </div>
 
 <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+
 
 @section scripts {
 
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+
 
     <script>
         var selectedcoursetable;
         $(document).ready(function () {
-           selectedcoursetable = $("#selected-course-table").DataTable({
+            selectedcoursetable = $("#selected-course-table").DataTable({
                 "ajax": {
                     "url": "/Course/GetSelectedCourses",
                     "type": "GET",
@@ -45,9 +70,59 @@
                     { "data": "CreditHours" },
                     { "data": "LevelTaken" },
                     { "data": "Lecturer" },
-                    { "data": "Programme" }
+                    { "data": "Programme" },
+                    {}
+                ],
+                'dom': 'Bfrtip',
+                'buttons': [
+                    {
+                        'extend': 'copyHtml5',
+                        'text': 'Copy to clipboard'
+                    },
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                'columnDefs': [
+                    {
+                        "defaultContent": "-",
+                        "targets": 6,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
                 ]
-             });
+            });
+
         });
+
+            // Handle delete button click event
+            $('#drop-btn').on('click', function () {
+                var selected_rows = [];
+                $("input:checkbox", selectedcoursetable.rows().nodes()).each(function () {
+                    if ($(this).is(":checked")) {
+                        var row = $(this).closest('tr');
+                        var rowData = selectedcoursetable.row($(row)).data();
+                        selected_rows.push(rowData);
+                    }
+                });
+                $.ajax({
+                    url: '/Course/DropCourse',
+                    type: 'POST',
+                    data: JSON.stringify(selected_rows),
+                    contentType: 'application/json',
+                    success: function () {
+                        alert('Selected courses have been dropped!');
+                        selectedcoursetable.ajax.reload();
+                        // Perform any necessary actions after successful deletion
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error case
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+
+
     </script>
 }
