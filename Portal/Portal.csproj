@@ -270,6 +270,10 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\CourseLayout.cshtml" />
     <Content Include="Views\Course\SelectedCourses.cshtml" />
+    <Content Include="Views\Student\StudentDetails.cshtml" />
+    <Content Include="Views\Course\SemesterRegistration.cshtml">
+      <BrowseToURL>~/Course/SemesterRegistration</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

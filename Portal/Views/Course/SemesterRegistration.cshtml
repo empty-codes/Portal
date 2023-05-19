@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Student Details";
+    Layout = "~/Views/Course/CourseLayout.cshtml";
+}
+
+<style>
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+        width: 40%;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th colspan="2">Register for the semester</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Session</td>
+                <td>2022/2023</td>
+            </tr>
+            <tr>
+                <td>Semester Name</td>
+                <td>2022/2023.2</td>
+            </tr>
+            <tr>
+                <td>Starting</td>
+                <td>01-Jan-2023</td>
+            </tr>
+            <tr>
+                <td>Last day for registration</td>
+                <td>31-May-2023</td>
+            </tr>
+            <tr>
+                <td>Ending</td>
+                <td>31-May-2023</td>
+            </tr>
+            <tr>
+                <td>Commence Semester Registration</td>
+                <td><button class="portal-button" onclick="window.location.href = 'Index';">Select Courses</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</body>
