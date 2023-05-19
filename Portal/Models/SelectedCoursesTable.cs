@@ -22,5 +22,6 @@ namespace Portal.Models
         public string Programme { get; set; }
         public string MatricNo { get; set; }
         public int No { get; set; }
+        public Nullable<int> SemesterNo { get; set; }
     }
 }

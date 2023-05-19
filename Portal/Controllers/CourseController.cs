@@ -31,34 +31,44 @@ namespace Portal.Controllers
         [HttpPost]
         public ActionResult SendSelectedCourses(List<SelectedCoursesTable> selectedRows)
         {
+            int semester = 2;
             int userStudyLevel = GetUserStudyLevel();
 
             foreach (var row in selectedRows)
             {
                 if (row.LevelTaken == userStudyLevel)
                 {
-                    // Check if the data already exists in the database for the given matricNo
-                    bool dataExists = db.SelectedCoursesTables.Any(x => x.CourseId == row.CourseId &&
-                       x.CourseTitle == row.CourseTitle &&
-                       x.CreditHours == row.CreditHours &&
-                       x.LevelTaken == row.LevelTaken &&
-                       x.Lecturer == row.Lecturer &&
-                       x.Programme == row.Programme &&
-                       x.MatricNo == User.Identity.Name);
-
-                    if (!dataExists)
+                    if (row.SemesterNo == semester || row.SemesterNo == 0)
                     {
-                        // Data does not exist, add it to the database
-                        db.SelectedCoursesTables.Add(new SelectedCoursesTable
+                        // Check if the data already exists in the database for the given matricNo
+                        bool dataExists = db.SelectedCoursesTables.Any(x => x.CourseId == row.CourseId &&
+                           x.CourseTitle == row.CourseTitle &&
+                           x.CreditHours == row.CreditHours &&
+                           x.LevelTaken == row.LevelTaken &&
+                           x.Lecturer == row.Lecturer &&
+                           x.Programme == row.Programme &&
+                           x.MatricNo == User.Identity.Name &&
+                           x.SemesterNo == row.SemesterNo);
+
+                        if (!dataExists)
                         {
-                            CourseId = row.CourseId,
-                            CourseTitle = row.CourseTitle,
-                            CreditHours = row.CreditHours,
-                            LevelTaken = row.LevelTaken,
-                            Lecturer = row.Lecturer,
-                            Programme = row.Programme,
-                            MatricNo = User.Identity.Name
-                        });
+                            // Data does not exist, add it to the database
+                            db.SelectedCoursesTables.Add(new SelectedCoursesTable
+                            {
+                                CourseId = row.CourseId,
+                                CourseTitle = row.CourseTitle,
+                                CreditHours = row.CreditHours,
+                                LevelTaken = row.LevelTaken,
+                                Lecturer = row.Lecturer,
+                                Programme = row.Programme,
+                                MatricNo = User.Identity.Name,
+                                SemesterNo = row.SemesterNo
+                            });
+                        }
+                    }
+                    else if (row.SemesterNo != semester && row.SemesterNo != 0)
+                    {
+                        continue;
                     }
                 }
 
@@ -116,29 +126,34 @@ namespace Portal.Controllers
         public ActionResult DropCourse(List<SelectedCoursesTable> selectedRows)
         {
             string MatricNo = User.Identity.Name;
-                foreach (var row in selectedRows)
+            foreach (var row in selectedRows)
+            {
+                var course = db.SelectedCoursesTables.FirstOrDefault(s => s.MatricNo == MatricNo && s.CourseId == row.CourseId);
+
+                if (course != null)
                 {
-                    var course = db.SelectedCoursesTables.FirstOrDefault(s => s.MatricNo == MatricNo && s.CourseId == row.CourseId);
-
-                    if (course != null)
-                    {
-                        db.SelectedCoursesTables.Remove(course);
-                    }
-                    else
-                    {
-                        // Return appropriate response if the course is not found
-                        return HttpNotFound();
-                    }
+                    db.SelectedCoursesTables.Remove(course);
                 }
-
-                // Save the changes to the database
-                db.SaveChanges();
-
-                // Return success message or redirect to a desired page
-                return Content("Course dropped successfully.");
+                else
+                {
+                    // Return appropriate response if the course is not found
+                    return HttpNotFound();
+                }
             }
 
+            // Save the changes to the database
+            db.SaveChanges();
 
+            // Return success message or redirect to a desired page
+            return Content("Course dropped successfully.");
         }
+
+        [Authorize]
+        public ActionResult SemesterRegistration()
+        {
+            return View();
+        }
+
     }
 
+}
