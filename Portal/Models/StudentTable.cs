@@ -43,8 +43,6 @@ namespace Portal.Models
         public string Nationality { get; set; }
         [Required(ErrorMessage = "Enter Matric number")]
         public string MatricNo { get; set; }
-        [Required(ErrorMessage = "Enter Age")]
-        public Nullable<int> Age { get; set; }
         [Required(ErrorMessage = "Enter Date of Birth")]
         public string DateOfBirth { get; set; }
         [Required]

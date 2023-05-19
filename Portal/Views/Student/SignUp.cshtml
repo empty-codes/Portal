@@ -132,12 +132,6 @@
                         </div>
 
                         <div class="form-fields">
-                            <label class="signup-labels">Age: </label>
-                            <label class="form-input">@Html.TextBoxFor(x => x.Age, new { @class = "form-control", placeholder = "Enter your current age" })</label>
-                            <br /><small id="error">@Html.ValidationMessageFor(x => x.Age)</small>
-                        </div>
-
-                        <div class="form-fields">
                             <label class="signup-labels">Study Level: </label>
                             <label class="form-input">@Html.DropDownListFor(x => x.StudyLevel, new SelectList(level), "Select level", new { @class = "form-control" }) </label>
                             <br /><small id="error">@Html.ValidationMessageFor(x => x.StudyLevel)</small>
