@@ -112,11 +112,14 @@ namespace Portal.Controllers
         }
 
         [Authorize]
-        public ActionResult Dashboard(StudentTable student)
+        public ActionResult Dashboard()
         {
-            ViewBag.Student = student;
-            //var studentFirstname = db.StudentTables.Find(student.FirstName);
-            //ViewBag.StudentName = $"{studentFirstname.FirstName}";
+            string MatricNo = User.Identity.Name;
+            var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
+            if (student != null)
+            {
+                ViewBag.Student = student;
+            }
             return View();
         }
 
@@ -132,5 +135,18 @@ namespace Portal.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Student");
         }
+
+        [Authorize]
+        public ActionResult StudentDetails()
+        { 
+            string MatricNo = User.Identity.Name;
+            var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
+            if (student != null)
+            {
+                ViewBag.Student = student;
+            }
+            return View();
+        }
+
     }
 }
