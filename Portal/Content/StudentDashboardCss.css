@@ -36,10 +36,10 @@ body {
 
  .course-content {
      display: flex;
-     margin: 20px;
-     padding-right: 40px;
-     width: 90%;
-     height: 70%;
+     margin: 10px;
+     padding-right: 30px;
+     width: 100%;
+     height: 100%;
      justify-content: center;
  }
 

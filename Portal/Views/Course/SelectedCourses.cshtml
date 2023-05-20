@@ -17,12 +17,12 @@
         width: 30%;
         align-items: center;
     }
+
 </style>
 
 
 <div class="course-list">
     <h3>Selected Courses</h3>
-
     <table id="selected-course-table" class="display selected-courses-table">
         <thead>
             <tr>
@@ -37,7 +37,11 @@
         </thead>
     </table>
 
-    <button class="portal-button" id="drop-btn">Drop Selected Courses</button>
+    <div class="btns flex-row">
+        <button class="portal-button" id="drop-btn">Drop Selected Courses</button>
+        <button class="portal-button" onclick="window.location.href = 'CourseForm';">View Course Form</button>
+    </div>
+    
 </div>
 
 <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
