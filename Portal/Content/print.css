@@ -1,0 +1,18 @@
+﻿
+
+@page{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    visibility: hidden;
+}
+
+.print {
+    visibility: visible;
+}
+
+.print-button {
+    visibility: hidden;
+}

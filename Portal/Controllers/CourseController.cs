@@ -154,6 +154,17 @@ namespace Portal.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult CourseForm()
+        {
+            string MatricNo = User.Identity.Name;
+            var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
+            if (student != null)
+            {
+                ViewBag.Student = student;
+            }
+            return View();
+        }
     }
 
 }
