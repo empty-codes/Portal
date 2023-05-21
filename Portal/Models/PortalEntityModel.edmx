@@ -81,6 +81,7 @@
           <Property Name="MatricNo" Type="nvarchar" MaxLength="50" />
           <Property Name="DateOfBirth" Type="nvarchar" MaxLength="50" />
           <Property Name="SemesterGPA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CourseFormSubmit" Type="bit" />
         </EntityType>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="CourseListTable" EntityType="Self.CourseListTable" Schema="dbo" store:Type="Tables" />
@@ -151,7 +152,8 @@
           <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SemesterGPA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SemesterGPA" Type="Decimal" Precision="18" Scale="0" DefaultValue="0.0" />
+          <Property Name="CourseFormSubmit" Type="Boolean" DefaultValue="false" />
         </EntityType>
         <EntityContainer Name="PortalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CourseListTables" EntityType="Self.CourseListTable" />
@@ -229,6 +231,7 @@
           <EntitySetMapping Name="StudentTables">
             <EntityTypeMapping TypeName="Models.StudentTable">
               <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="CourseFormSubmit" ColumnName="CourseFormSubmit" />
                 <ScalarProperty Name="SemesterGPA" ColumnName="SemesterGPA" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="RegNo" ColumnName="RegNo" />

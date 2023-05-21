@@ -15,6 +15,14 @@ namespace Portal.Models
 
     public partial class StudentTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StudentTable()
+        {
+            this.SemesterGPA = 0.0m;
+            this.CourseFormSubmit = false;
+        }
+
+        
         public int RegNo { get; set; }
         [Required(ErrorMessage = "Enter Firstname")]
         public string FirstName { get; set; }
@@ -48,8 +56,8 @@ namespace Portal.Models
         [Required]
         [RegularExpression("^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]
         public string ConfirmPassword { get; set; }
-
         public Nullable<decimal> SemesterGPA { get; set; }
+        public Nullable<bool> CourseFormSubmit { get; set; }
     }
 }
 
