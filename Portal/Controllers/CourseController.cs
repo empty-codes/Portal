@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -148,9 +150,30 @@ namespace Portal.Controllers
             return Content("Course dropped successfully.");
         }
 
+
+        [Authorize]
+        public ActionResult Results()
+        {
+            string MatricNo = User.Identity.Name;
+            var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
+            ViewBag.Student = student;
+            CalculateGPA();
+            return View();
+        }
+
         [Authorize]
         public ActionResult SemesterRegistration()
         {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult ResultSlip()
+        {
+            string MatricNo = User.Identity.Name;
+            var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
+            ViewBag.Student = student;
+            CalculateGPA();
             return View();
         }
 
@@ -165,6 +188,109 @@ namespace Portal.Controllers
             }
             return View();
         }
+
+
+        public ActionResult CalculateGPA()
+        {
+            string matricNumber = User.Identity.Name;
+            // Get all the selected courses for the student
+            try
+            {
+                List<SelectedCoursesTable> selectedCourses = db.SelectedCoursesTables
+                    .Where(s => s.MatricNo == matricNumber)
+                    .ToList();
+
+                // Calculate the GPA
+                decimal gpSum = 0;
+                int? creditHourSum = 0;
+
+                foreach (var course in selectedCourses)
+                {
+                    // Assign grade based on the score
+                    string grade = GetGradeFromScore((int)course.Score);
+                    course.Grade = grade;
+
+                    // Calculate GP based on grade and credit hours
+                    decimal point = GetPointFromGrade(grade);
+                    decimal gp = (decimal)(point * course.CreditHours);
+                    course.GP = (int?)gp;
+
+                    // Update the database with the calculated values
+                    db.Entry(course).State = EntityState.Modified;
+
+                    // Accumulate the GP and credit hours
+                    gpSum += gp;
+                    creditHourSum += course.CreditHours;
+                }
+
+                // Save the changes to the database
+                db.SaveChanges();
+
+                // Calculate the GPA
+                decimal gpa = (decimal)(gpSum / creditHourSum);
+
+                // Update the student's GPA in the database
+                StudentTable student = db.StudentTables.FirstOrDefault(s => s.MatricNo == matricNumber);
+                if (student != null)
+                {
+                    student.SemesterGPA = Math.Round(gpa, 5);
+                    db.Entry(student).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+
+                return RedirectToAction("Results", "Course");
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Handle validation errors
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
+
+                string errorMessage = string.Join("\n", errorMessages);
+                ViewBag.ErrorMessage = errorMessage;
+                return View("Error");
+            }
+        }
+    
+
+    private string GetGradeFromScore(int score)
+    {
+        if (score >= 80 && score <= 100)
+            return "A";
+        else if (score >= 60 && score < 80)
+            return "B";
+        else if (score >= 50 && score < 60)
+            return "C";
+        else if (score >= 45 && score < 50)
+            return "D";
+        else if (score >= 40 && score < 45)
+            return "E";
+        else
+            return "F";
     }
 
+    private decimal GetPointFromGrade(string grade)
+    {
+        switch (grade)
+        {
+            case "A":
+                return 5;
+            case "B":
+                return 4;
+            case "C":
+                return 3;
+            case "D":
+                return 2;
+            case "E":
+                return 1;
+            default:
+                return 0;
+        }
+    }
 }
+    }
+
+

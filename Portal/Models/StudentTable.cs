@@ -48,6 +48,8 @@ namespace Portal.Models
         [Required]
         [RegularExpression("^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]
         public string ConfirmPassword { get; set; }
+
+        public Nullable<decimal> SemesterGPA { get; set; }
     }
 }
 
