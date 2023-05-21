@@ -187,6 +187,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturerController.cs" />
+    <Compile Include="Controllers\LecturerCourseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,6 +278,8 @@
       <BrowseToURL>~/Course/SemesterRegistration</BrowseToURL>
     </Content>
     <Content Include="Views\Course\CourseForm.cshtml" />
+    <Content Include="Views\LecturerCourse\MyCourseList.cshtml" />
+    <Content Include="Views\LecturerCourse\MyStudents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

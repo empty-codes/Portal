@@ -42,6 +42,9 @@
           <Property Name="MatricNo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SemesterNo" Type="int" />
+          <Property Name="Score" Type="int" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="50" />
+          <Property Name="GP" Type="int" />
         </EntityType>
         <EntityType Name="StudentCourseListTable">
           <Key>
@@ -168,6 +171,9 @@
           <Property Name="MatricNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SemesterNo" Type="Int32" />
+          <Property Name="Score" Type="Int32" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GP" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -241,6 +247,9 @@
           <EntitySetMapping Name="SelectedCoursesTables">
             <EntityTypeMapping TypeName="Models.SelectedCoursesTable">
               <MappingFragment StoreEntitySet="SelectedCoursesTable">
+                <ScalarProperty Name="GP" ColumnName="GP" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
                 <ScalarProperty Name="No" ColumnName="No" />
                 <ScalarProperty Name="MatricNo" ColumnName="MatricNo" />
