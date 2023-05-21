@@ -6,30 +6,6 @@
 
 <h2>MyStudents</h2>
 
-@*@if (ViewBag.MatricNumbers != null)
-    {
-        <table>
-            <thead>
-                <tr>
-                    <th>Matric Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var matricNumber in ViewBag.MatricNumbers)
-                {
-                    <tr>
-                        <td>@matricNumber</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No students are registered for this course.</p>
-    }*@
-
-
 <div class="lecturer-students-list">
     <table id="lecturer-student-table" class="display lecturer-student-table">
         <thead>
@@ -38,12 +14,38 @@
                 <th>Course Id</th>
                 <th>Course Title</th>
                 <th>Level</th>
-                <th></th>
+                <th>Score</th>
                 @*<th>Lecturer</th>*@
             </tr>
         </thead>
     </table>
 </div>
+
+<div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scoreModalLabel">Enter Student Score</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="matricNumber" />
+                <input type="hidden" id="courseId" />
+                <div class="form-group">
+                    <label for="scoreInput">Score:</label>
+                    <input type="text" class="form-control" id="scoreInput">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveScoreBtn">Save</button>
+                <button type="button" class="btn btn-secondary" id="cancelScoreBtn" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
@@ -51,6 +53,7 @@
 
 @section scripts {
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
@@ -75,7 +78,12 @@
                     { "data": "CourseId" },
                     { "data": "CourseTitle" },
                     { "data": "LevelTaken" },
-                    /*{ "data": "Lecturer" },*/
+                    {
+                        "data": "Score",
+                        "render": function (data, type, row) {
+                            return '<button class="btn-score" data-matric="' + row.MatricNo + '" data-course="' + row.CourseId + '">' + data + '</button>';
+                        }
+                    }
                 ],
                 'dom': 'Bfrtip',
                 'buttons': [
@@ -91,26 +99,62 @@
 
         });
 
+        $("#lecturer-student-table").on('click', '.btn-score', function () {
+            var matricNumber = $(this).data('matric');
+            var courseId = $(this).data('course');
 
-        //$('#view-btn').on('click', function () {
-        //    var selected_rows = [];
-        //    $("input:checkbox", lecturercoursetable.rows().nodes()).each(function () {
-        //        if ($(this).is(":checked")) {
-        //            var row = $(this).closest('tr');
-        //            selected_rows.push(lecturercoursetable.row($(row)).data());
-        //        }
-        //    });
-        //    $.ajax({
-        //        url: '/LecturerCourse/MyStudents',
-        //        type: 'POST',
-        //        data: JSON.stringify(selected_rows),
-        //        contentType: 'application/json',
-        //        success: function () {
-        //            alert('Done');
-        //            location.href = url;
-        //        }
-        //    });
-        //});
+            // Open the modal/popup and display the input box
+            $('#scoreModal').modal('show');
+            $('#scoreModal').find('#matricNumber').val(matricNumber);
+            $('#scoreModal').find('#courseId').val(courseId);
+        });
+
+
+        $('#saveScoreBtn').click(function () {
+            var matricNumber = $('#matricNumber').val();
+            var courseId = $('#courseId').val();
+            var newValue = $('#scoreInput').val();
+
+            $.ajax({
+                url: '/LecturerCourse/UpdateScore',
+                type: 'POST',
+                data: {
+                    matricNumber: matricNumber,
+                    courseId: courseId,
+                    newValue: newValue
+                },
+                success: function () {
+                    $('#scoreModal').modal('hide');
+                    alert("Score entered successfully");
+                    /*$('#scoreModal').modal('hide');*/
+
+                    // Update the DataTable with the new score value
+                    var row = lecturerstudentcoursetable.row(function (idx, data, node) {
+                        return data.MatricNo === matricNumber && data.CourseId === courseId;
+                    });
+
+                    if (row.length) {
+                        var rowData = row.data();
+                        rowData.Score = newValue;
+                        row.data(rowData).draw(false);
+                    }
+                },
+                error: function () {
+                    // Handle error response
+                }
+            });
+        });
+
+        $('#cancelScoreBtn').click(function () {
+            $('#scoreModal').modal('hide');
+        });
+
+        $('#scoreModal').on('hidden.bs.modal', function () {
+            // Clear the input fields when the modal is hidden
+            $('#matricNumber').val('');
+            $('#courseId').val('');
+            $('#scoreInput').val('');
+        });
     </script>
 
-    }
+}

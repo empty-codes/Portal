@@ -47,42 +47,32 @@ namespace Portal.Controllers
                 .ToList();
 
             return Json(new { data = slList }, JsonRequestBehavior.AllowGet);
-
-
-            //// Prepare the data to be returned to the client-side
-            //var courseData = selectedCourses.Select(course => new
-            //{
-            //    MatricNumber = course.MatricNumber,
-            //    CourseId = course.CourseId,
-            //    CourseTitle = course.CourseTitle
-            //});
-
-            //// Return the data as JSON
-            //return Json(new { data = courseData }, JsonRequestBehavior.AllowGet);
-            //foreach (var row in selectedRows)
-            //{
-
-            //    List<SelectedCoursesTable> scList = db.SelectedCoursesTables
-            //    .Where(sc => sc.CourseId == row.CourseId && sc.Lecturer == row.Lecturer)
-            //    .ToList();
-
-            //    List<string> matricNumbers =scList.Select(sc => sc.MatricNo).ToList();
-            //    List<string> courseIds = scList.Select(sc => sc.CourseId).ToList();
-            //    List<string> courseTitles = scList.Select(sc => sc.CourseTitle).ToList();
-
-            //    ViewBag.MatricNumbers = matricNumbers;
-            //    ViewBag.CourseIds = courseIds;
-            //    ViewBag.CourseTitles = courseTitles;
-
-            //}
-
-            //return Json(new { success = true });
-            //return View();
         }
 
         public ActionResult MyStudents()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult UpdateScore(string courseId, string matricNumber, string newValue)
+        {
+            try
+            {
+                    // Retrieve the record based on the course ID and matric number
+                    var score = db.SelectedCoursesTables.FirstOrDefault(c => c.CourseId == courseId && c.MatricNo == matricNumber);
+                        score.Score = int.Parse(newValue);
+                        db.SaveChanges();
+
+                        return Json(new { success = true });
+                
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during the update process
+                return Json(new { success = false, message = "An error occurred while updating the score." });
+            }
+        }
+
     }
 }
