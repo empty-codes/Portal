@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Portal.Controllers
 {
@@ -46,23 +48,39 @@ namespace Portal.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Dashboard", emailCheck);
+                    TempData["LoginData"] = emailCheck;
+                    //FormsAuthentication.SetAuthCookie(, false);
+                    return RedirectToAction("Dashboard", "Lecturer");
                 }
             }
             return View();
         }
 
-        public ActionResult Dashboard(LecturerTable lecturer)
+        
+        public ActionResult Dashboard()
         {
-            ViewBag.Lecturer = lecturer;
-            return View();
+            LecturerTable login = (LecturerTable)TempData["LoginData"];
+            TempData.Keep("LoginData");
+            var lecturer = db.LecturerTables.FirstOrDefault(s => s.FirstName == login.FirstName);
+                if (lecturer != null)
+                {
+                    ViewBag.Lecturer = lecturer;
+            }
+                return View();
+           
         }
 
         public ActionResult Logout()
         {
+            FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "Lecturer");
         }
 
     }
+        
+            
+    
 }
+
+    
