@@ -11,58 +11,65 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary dashboard-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><span id="uni">STUDENT PORTAL</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid">
-                    @*<li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Student/Dashboard">Dashboard</a>
-                    </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Student/StudentDetails">Student Details</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Course/SemesterRegistration">Register for Semester</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Course/Index">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Course/SelectedCourses">Selected Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Course/Results">Results</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-end container-fluid">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                    <li class="nav-item">
-                        <span id="nav-link" class="nav-link">Hello @User.Identity.Name</span>
-                    </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="nav-link" href="~/Student/Logout">Logout</a>
-                        </li>
-                    }
 
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="#"><span id="uni">STUDENT PORTAL</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Student/StudentDetails">Student Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Course/SemesterRegistration">Register for Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Course/Index">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Course/SelectedCourses">Selected Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Course/Results">Results</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-end container-fluid">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <li class="nav-item">
+                    <span id="nav-link" class="nav-link">Hello @User.Identity.Name</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-link" href="~/Student/Logout">Logout</a>
+                </li>
+                }
+
+            </ul>
         </div>
     </nav>
 
 
-    <div class="content">
+
+
+
+
+
+
+
+
+
+
+    <div class="course-content">
         @RenderBody()
     </div>
 
     <!--Footer-->
-    <footer>
+    <footer class="mt-auto">
         <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
     </footer>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>

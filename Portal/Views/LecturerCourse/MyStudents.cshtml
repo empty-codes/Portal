@@ -4,9 +4,17 @@
     Layout = "~/Views/Lecturer/LecturerDashboardLayout.cshtml";
 }
 
-<h2>MyStudents</h2>
+<style>
+    .btn-score {
+        background-color: white;
+        width: 70px;
+        border: 1px solid black;
+    }
+</style>
 
 <div class="lecturer-students-list">
+    <h3>MyStudents</h3><br />
+    <p>Click on the boxes under the 'Score' column to input Student Scores.</p>
     <table id="lecturer-student-table" class="display lecturer-student-table">
         <thead>
             <tr>

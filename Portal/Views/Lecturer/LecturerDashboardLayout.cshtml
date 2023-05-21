@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!--Navbar-->
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary dashboard-navbar">
@@ -39,18 +39,18 @@
     </nav>
 
 
-        <div class="course-content">
-            @RenderBody()
-        </div>
+    <div class="course-content">
+        @RenderBody()
+    </div>
 
-        <!--Footer-->
-        <footer>
-            <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
-        </footer>
+    <!--Footer-->
+    <footer class="mt-auto">
+        <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
+    </footer>
 
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <script src="~/Scripts/jquery-2.0.0.min.js"></script>
-        @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-2.0.0.min.js"></script>
+    @RenderSection("scripts", required: false)
 
 </body>
 

@@ -4,11 +4,24 @@
     Layout = "~/Views/Lecturer/LecturerDashboardLayout.cshtml";
 }
 
-
+<style>
+    .portal-button {
+        background-color: #f64c72;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+        width: 30%;
+        align-items: center;
+    }
+</style>
 
 <div class="lecturer-course-list">
 
-    <h3>Hello @ViewBag.Lecturer.FirstName , Here are the courses you are offering:</h3>
+    <h4>Hello @ViewBag.Lecturer.FullName  , Here are the courses you are taking:</h4><br />
     <table id="lecturer-course-table" class="display lecturer-course-table">
         <thead>
             <tr>
