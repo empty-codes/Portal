@@ -21,15 +21,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid">
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center container-fluid actual-links">
                     <li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Lecturer/Dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Home/Index">Courses I'm Teaching</a>
+                        <a class="nav-link" id="nav-link" href="~/LecturerCourse/MyCourseList">Courses I'm Teaching</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="nav-link" href="~/Home/Index">Students Offering my Courses</a>
+                        <a class="nav-link" id="nav-link" href="~/LecturerCourse/MyStudents">Students Offering my Courses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="nav-link" href="~/Home/Index">Result Upload</a>
@@ -44,40 +44,20 @@
         </div>
     </nav>
 
-    <div class="content">
-        <!--Sidebar-->
 
-        <!--<nav class="navbar bg-body-tertiary dashboard-sidebar">
-            <ul class="nav flex-column">
-                <li class="nav-item dashboard-nav-item top">
-                    <a class="nav-link active dashboard-nav-link" aria-current="page" href="~/Lecturer/Dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item dashboard-nav-item">
-                    <a class="nav-link dashboard-nav-link" href="#">Courses I'm Teaching</a>
-                </li>
-                <li class="nav-item dashboard-nav-item">
-                    <a class="nav-link dashboard-nav-link" href="#">Students Offering my Courses</a>
-                </li>
-                <li class="nav-item dashboard-nav-item">
-                    <a class="nav-link dashboard-nav-link" href="#">Result Upload</a>
-                </li>
-
-            </ul>
-        </nav>-->
-
-
-
-        <div class="dashboard-content">
-            <div class="actual-content">
-                @RenderBody()
-            </div>
+        <div class="course-content">
+            @RenderBody()
         </div>
 
-    </div>
-    <!--Footer-->
-    <footer>
-        <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
-    </footer>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <!--Footer-->
+        <footer>
+            <p align="center">Copyright @@2023, Esther University --emptycodes--</p>
+        </footer>
+
+        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <script src="~/Scripts/jquery-2.0.0.min.js"></script>
+        @RenderSection("scripts", required: false)
+
 </body>
+
 </html>
