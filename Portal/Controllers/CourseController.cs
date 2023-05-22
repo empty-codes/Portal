@@ -157,8 +157,24 @@ namespace Portal.Controllers
             string MatricNo = User.Identity.Name;
             var student = db.StudentTables.FirstOrDefault(s => s.MatricNo == MatricNo);
             ViewBag.Student = student;
-            CalculateGPA();
+
+            List<SelectedCoursesTable> scc = db.SelectedCoursesTables
+                    .Where(d => d.MatricNo == MatricNo)
+                    .ToList();
+            foreach (var c in scc) {
+                if (c.Score == null)
+                {
+                    string errorMessage = "Your results have not been released";
+                    ViewBag.ErrorMessage = errorMessage;
+                    return RedirectToAction("SelectedCourses");
+                }
+                else 
+                {
+                    CalculateGPA();
+                }
+            }
             return View();
+            
         }
 
         [Authorize]
@@ -200,46 +216,51 @@ namespace Portal.Controllers
                     .Where(s => s.MatricNo == matricNumber)
                     .ToList();
 
-                // Calculate the GPA
-                decimal gpSum = 0;
-                int? creditHourSum = 0;
+                    // Calculate the GPA
+                    decimal gpSum = 0;
+                    int? creditHourSum = 0;
 
-                foreach (var course in selectedCourses)
-                {
-                    // Assign grade based on the score
-                    string grade = GetGradeFromScore((int)course.Score);
-                    course.Grade = grade;
+                    foreach (var course in selectedCourses)
+                    {
 
-                    // Calculate GP based on grade and credit hours
-                    decimal point = GetPointFromGrade(grade);
-                    decimal gp = (decimal)(point * course.CreditHours);
-                    course.GP = (int?)gp;
+                        // Assign grade based on the score
+                        string grade = GetGradeFromScore((int)course.Score);
+                        course.Grade = grade;
 
-                    // Update the database with the calculated values
-                    db.Entry(course).State = EntityState.Modified;
+                        // Calculate GP based on grade and credit hours
+                        decimal point = GetPointFromGrade(grade);
+                        decimal gp = (decimal)(point * course.CreditHours);
+                        course.GP = (int?)gp;
 
-                    // Accumulate the GP and credit hours
-                    gpSum += gp;
-                    creditHourSum += course.CreditHours;
-                }
+                        // Update the database with the calculated values
+                        db.Entry(course).State = EntityState.Modified;
 
-                // Save the changes to the database
-                db.SaveChanges();
+                        // Accumulate the GP and credit hours
+                        gpSum += gp;
+                        creditHourSum += course.CreditHours;
 
-                // Calculate the GPA
-                decimal gpa = (decimal)(gpSum / creditHourSum);
 
-                // Update the student's GPA in the database
-                StudentTable student = db.StudentTables.FirstOrDefault(s => s.MatricNo == matricNumber);
-                if (student != null)
-                {
-                    student.SemesterGPA = Math.Round(gpa, 5);
-                    db.Entry(student).State = EntityState.Modified;
+                   
+                    }
+
+                    // Save the changes to the database
                     db.SaveChanges();
-                }
+
+                    // Calculate the GPA
+                    decimal gpa = (decimal)(gpSum / creditHourSum);
+
+                    // Update the student's GPA in the database
+                    StudentTable student = db.StudentTables.FirstOrDefault(s => s.MatricNo == matricNumber);
+                    if (student != null)
+                    {
+                        student.SemesterGPA = Math.Round(gpa, 5);
+                        db.Entry(student).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
 
 
-                return RedirectToAction("Results", "Course");
+                    return RedirectToAction("Results", "Course");
+                
 
             }
             catch (DbEntityValidationException ex)
