@@ -161,18 +161,16 @@ namespace Portal.Controllers
             List<SelectedCoursesTable> scc = db.SelectedCoursesTables
                     .Where(d => d.MatricNo == MatricNo)
                     .ToList();
-            foreach (var c in scc) {
+            foreach (var c in scc)
+            {
                 if (c.Score == null)
                 {
-                    string errorMessage = "Your results have not been released";
-                    ViewBag.ErrorMessage = errorMessage;
                     return RedirectToAction("SelectedCourses");
                 }
-                else 
-                {
-                    CalculateGPA();
-                }
             }
+
+            // If all scores are not null, proceed to calculate GPA
+            CalculateGPA();
             return View();
             
         }
