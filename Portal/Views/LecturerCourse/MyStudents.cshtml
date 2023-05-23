@@ -43,7 +43,8 @@
                 <input type="hidden" id="courseId" />
                 <div class="form-group">
                     <label for="scoreInput">Score:</label>
-                    <input type="text" class="form-control" id="scoreInput">
+                    <input type="text" class="form-control" id="scoreInput" pattern="^(100|\d{1,2})$" title="Score must be a number from 0 to 100." required>
+                    <div class="invalid-feedback">Score must be a number from 0 to 100.</div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -122,6 +123,13 @@
             var matricNumber = $('#matricNumber').val();
             var courseId = $('#courseId').val();
             var newValue = $('#scoreInput').val();
+
+            // Validate the score using the pattern
+            if (!document.getElementById('scoreInput').checkValidity()) {
+                // Show the invalid feedback message
+                $('#scoreInput').addClass('is-invalid');
+                return; // Exit the function if the score is not valid
+            }
 
             $.ajax({
                 url: '/LecturerCourse/UpdateScore',

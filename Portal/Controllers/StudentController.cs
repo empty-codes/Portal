@@ -99,13 +99,13 @@ namespace Portal.Controllers
                 }
                 else if (userCheck.Password != login.Password)
                 {
-                    ViewBag.Error = "Wrong Password.";
+                    ViewBag.Error = "Wrong matric number or password.";
                     return View(login);
                 }
                 else
                 {
                     FormsAuthentication.SetAuthCookie(login.MatricNo, false);
-                    return RedirectToAction("Dashboard", userCheck);
+                    return RedirectToAction("Dashboard", "Student");
                 }
             }
             return View();

@@ -43,7 +43,7 @@ namespace Portal.Controllers
                 }
                 else if (emailCheck.Password != login.Password)
                 {
-                    ViewBag.Error = "Wrong Password.";
+                    ViewBag.Error = "Wrong email or password.";
                     return View(login);
                 }
                 else

@@ -18,6 +18,21 @@ namespace Portal
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "StudentDashboardURL",
+                url: "Student/Dashboard",
+                defaults: new { controller = "Student", action = "Dashboard" }
+        );
+
+
+            routes.MapRoute(
+                name: "LecturerDashboardURL",
+                url: "Lecturer/Dashboard",
+                defaults: new { controller = "Lecturer", action = "Dashboard" }
+        );
+
+
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Portal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SelectedCoursesTable
     {
         public string CourseId { get; set; }
@@ -23,6 +24,7 @@ namespace Portal.Models
         public string MatricNo { get; set; }
         public int No { get; set; }
         public Nullable<int> SemesterNo { get; set; }
+        [RegularExpression(@"^(?:100|[1-9]\d?|0)$")]
         public Nullable<int> Score { get; set; }
         public string Grade { get; set; }
         public Nullable<int> GP { get; set; }
