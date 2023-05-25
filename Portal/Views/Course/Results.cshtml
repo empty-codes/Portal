@@ -6,10 +6,9 @@
 
 <style>
     .portal-button {
-        background-color: #f64c72;
+        background-color: black;
         color: white;
-        border: none;
-        border-radius: 20px;
+        border: 1px solid black;
         padding: 10px;
         padding-left: 20px;
         padding-right: 20px;
@@ -17,7 +16,7 @@
         width: 40%;
         align-items: center;
     }
-    p {
+    .deets {
         font-weight: bold;
         font-size: 20px;
     }
@@ -28,7 +27,7 @@
 
 <div class="course-list">
     <h3>Results</h3>
-    <p>@ViewBag.Student.FirstName @ViewBag.Student.LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester: 2022/2023.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester GPA: @Math.Round(ViewBag.Student.SemesterGPA, 2)</p>
+    <p class="deets">@ViewBag.Student.FirstName @ViewBag.Student.LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester: 2022/2023.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester GPA: @Math.Round(ViewBag.Student.SemesterGPA, 2)</p>
     <table id="selected-course-table" class="display selected-courses-table">
         <thead>
             <tr>
