@@ -1,5 +1,7 @@
 # Portal
 
+currently hosted at: http://emptycodes-001-site1.etempurl.com/
+
 Status: Ongoing
 
 Summary
@@ -20,3 +22,19 @@ _____________________
     -Interface to input the scores of each student
 6. The GPA of each student is calculated according to a grading scale
 7. The student can then View results and print a result slip assumedly after exams
+
+
+demo videos:
+_____________________
+1. Student Registration and Login
+https://github.com/empty-codes/Portal/assets/92234322/df386aca-2a7c-48bf-87d1-c0c582ac0337
+
+2. Lecturer Login and Score input
+
+[lecturer login and score input.webm](https://github.com/empty-codes/Portal/assets/92234322/e12a34f4-fcff-4bda-aa7e-47c5d971bbf2)
+
+3. Student Result and Result Slip
+[student result.webm](https://github.com/empty-codes/Portal/assets/92234322/52494473-4ebe-48cd-bb72-da181c5764e2)
+
+5. Input Validators
+[input validation.webm](https://github.com/empty-codes/Portal/assets/92234322/445e5357-2305-455e-aadd-d51bd4f5d7e0)
