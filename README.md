@@ -24,17 +24,23 @@ _____________________
 7. The student can then View results and print a result slip assumedly after exams
 
 
-demo videos:
+
+
+Demo videos:
 _____________________
 1. Student Registration and Login
-https://github.com/empty-codes/Portal/assets/92234322/df386aca-2a7c-48bf-87d1-c0c582ac0337
+
+https://github.com/empty-codes/Portal/assets/92234322/c62c216f-e2be-43bf-88cc-d6d73e627444
 
 2. Lecturer Login and Score input
 
 [lecturer login and score input.webm](https://github.com/empty-codes/Portal/assets/92234322/e12a34f4-fcff-4bda-aa7e-47c5d971bbf2)
 
 3. Student Result and Result Slip
-[student result.webm](https://github.com/empty-codes/Portal/assets/92234322/52494473-4ebe-48cd-bb72-da181c5764e2)
+
+
+[student result.webm](https://github.com/empty-codes/Portal/assets/92234322/ff0f787a-e27b-49ac-b488-05f5f2307d55)
 
 5. Input Validators
-[input validation.webm](https://github.com/empty-codes/Portal/assets/92234322/445e5357-2305-455e-aadd-d51bd4f5d7e0)
+
+[input validation.webm](https://github.com/empty-codes/Portal/assets/92234322/7c8e6ec2-b826-4d74-a697-2a09adcb6d02)
