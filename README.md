@@ -1,7 +1,5 @@
 # Portal
 
-currently hosted at: http://emptycodes-001-site1.etempurl.com/
-
 Status: Ongoing
 
 Summary
